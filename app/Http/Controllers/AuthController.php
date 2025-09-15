@@ -99,14 +99,30 @@ public function login(Request $request)
 }
 
 
-// logout
-public function logout(Request $request){
-    $request->user()->currentAccessToken()->delete();
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Logout Sucessfully Bhai'
-    ]);
+// Logout User
+public function logout(Request $request)
+{
+
+      dd($request->user());
+      
+    try {
+        // Delete current access token
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'Successfully logged out bhai'
+        ], 200);
+
+    } catch (Exception $e) {
+        return response()->json([
+            'status'  => 'error',
+            'message' => 'Logout failed',
+            'error'   => $e->getMessage()
+        ], 500);
+    }
 }
+
 
 
 }
