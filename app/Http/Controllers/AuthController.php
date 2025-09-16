@@ -100,29 +100,25 @@ public function login(Request $request)
 
 
 // Logout User
-public function logout(Request $request)
-{
+  public function logout(Request $request)
+    {
+        try {
+            // delete current token
+            $request->user()->currentAccessToken()->delete();
 
-      dd($request->user());
-      
-    try {
-        // Delete current access token
-        $request->user()->currentAccessToken()->delete();
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Successfully logged out'
+            ], 200);
 
-        return response()->json([
-            'status'  => 'success',
-            'message' => 'Successfully logged out bhai'
-        ], 200);
-
-    } catch (Exception $e) {
-        return response()->json([
-            'status'  => 'error',
-            'message' => 'Logout failed',
-            'error'   => $e->getMessage()
-        ], 500);
+        } catch (Exception $e) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Logout failed',
+                'error'   => $e->getMessage()
+            ], 500);
+        }
     }
-}
-
 
 
 }
