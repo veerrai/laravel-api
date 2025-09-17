@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: laravel-api
+    env: docker
+    plan: free
+    region: oregon   # or any Render region
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"         # keep value as string
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_URL
+        value: https://laravel-api.onrender.com
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: your-db-host    # replace with actual DB host
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_DATABASE
+        value: laravel_api
+      - key: DB_USERNAME
+        value: root
+      - key: DB_PASSWORD
+        value: your-password   # don’t leave blank
