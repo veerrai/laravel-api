@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class AddDetails extends Model
 {
@@ -18,12 +20,4 @@ class AddDetails extends Model
     'photo'
    ];
 
-   public function getPhotourlAttribute(){
-    if($this->photo){
-        return assest('photos/' . $this->photo);
-
-    }
-
-    return null;
-   }
 }

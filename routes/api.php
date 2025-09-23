@@ -13,5 +13,5 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
-
-Route::post('/add-details', [AddDetailsController::class, 'adddetails']);
+Route::post('/add-details', [AddDetailsController::class, 'store']);
+Route::get('/add-details', [AddDetailsController::class, 'index']);
